@@ -16,3 +16,5 @@ yum install postgresql12-server
 systemctl enable postgresql-12
 systemctl start postgresql-12
 systemctl status postgresql-12
+
+echo "Done job!"
