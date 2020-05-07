@@ -14,12 +14,12 @@
 ### Step 2: Config remote connect
 - find path to file
 
-
-    ## [root@node01 postgresql]# find / -name "postgresql.conf"
-    ## /var/lib/pgsql/12/data/postgresql.conf
-    ## [root@node01 postgresql]# find / -name "pg_hba.conf"
-    ## /var/lib/pgsql/12/data/pg_hba.conf
-
+    ```
+        ## [root@node01 postgresql]# find / -name "postgresql.conf"
+        ## /var/lib/pgsql/12/data/postgresql.conf
+        ## [root@node01 postgresql]# find / -name "pg_hba.conf"
+        ## /var/lib/pgsql/12/data/pg_hba.conf
+    ```
 - edit ip listening in postgresql.conf
 
 	Open postgresql.conf file and replace line
