@@ -4,12 +4,12 @@
 
 [Script here](https://github.com/tuanna08/postgresql/blob/master/setup.sh)
 
-```
-# git clone https://github.com/tuanna08/postgresql.git
-# cd postgresql
-# chmod +x ./setup.sh
-# ./setup.sh
-```
+    ```
+    # git clone https://github.com/tuanna08/postgresql.git
+    # cd postgresql
+    # chmod +x ./setup.sh
+    # ./setup.sh
+    ```
 
 ### Step 2: Config remote connect
 - find path to file
@@ -22,7 +22,7 @@
     ```
 - edit ip listening in postgresql.conf
 
-	Open postgresql.conf file and replace line
+	Open postgresql.conf file, uncomment and replace line
     ```
         listen_addresses = 'localhost'
     ```
