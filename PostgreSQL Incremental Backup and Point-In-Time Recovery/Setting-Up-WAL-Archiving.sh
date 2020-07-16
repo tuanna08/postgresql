@@ -15,10 +15,10 @@ sed -i "s/^timezone = .*/timezone = '$time_zone'/g" /etc/postgresql/12/main/post
 sed -i "s/^log_timezone = .*/log_timezone = '$time_zone'/g" /etc/postgresql/12/main/postgresql.conf
 
 sed -i 's/^archive_mode =.*/archive_mode = on/g' /etc/postgresql/12/main/postgresql.conf
-sed -i "s/^archive_command =.*/archive_command = 'test ! -f /wal_archive/%f && cp %p /wal_archive/%f'/g" /etc/postgresql/12/main/postgresql.conf
+sed -i "s/^archive_command =.*/archive_command = 'test \! \-f \/wal_archive/%f \&& cp \%p \/wal_archive/%f'/g" /etc/postgresql/12/main/postgresql.conf
 sed -i 's/^wal_level =.*/wal_level = replica/g' /etc/postgresql/12/main/postgresql.conf
 
-systemctl restart postgres
+systemctl restart postgresql
 
 # read -s -p "Enter password for replication: " my_password
 #su postgres -c "psql -c \"CREATE USER replication REPLICATION LOGIN CONNECTION LIMIT 10 ENCRYPTED PASSWORD '$my_password';\""
