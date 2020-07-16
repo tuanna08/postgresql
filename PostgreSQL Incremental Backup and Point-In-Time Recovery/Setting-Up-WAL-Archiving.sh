@@ -8,6 +8,7 @@ mkdir /wal_archive
 chown -R postgres.postgres /wal_archive
 
 read -s -p "Enter version postgresql (12): " my_version
+echo "$my_version"
 
 sed -i "s/^timezone = .*/timezone = '$time_zone'/g" /etc/postgresql/$my_version/main/postgresql.conf
 sed -i "s/^log_timezone = .*/log_timezone = '$time_zone'/g" /etc/postgresql/$my_version/main/postgresql.conf
