@@ -3,7 +3,7 @@ echo "==========Setting up WAL Archiving============"
 
 time_zone = "Asia/Ho_Chi_Minh"
 timedatectl set-timezone $time_zone && date
-
+echo $time_zone
 mkdir /wal_archive
 chown -R postgres.postgres /wal_archive
 
