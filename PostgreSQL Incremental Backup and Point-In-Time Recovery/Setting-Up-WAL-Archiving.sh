@@ -9,7 +9,7 @@ chown -R postgres.postgres /wal_archive
 
 # read -s -p "Enter version postgresql (12): " my_version
 # echo "=============== $my_version"
-mv /etc/postgresql/12/main/postgresql.conf /etc/postgresql/12/main/postgresql.conf.bak
+cp /etc/postgresql/12/main/postgresql.conf /etc/postgresql/12/main/postgresql.conf.bak
 
 sed -i "s/^timezone = .*/timezone = '$time_zone'/g" /etc/postgresql/12/main/postgresql.conf
 sed -i "s/^log_timezone = .*/log_timezone = '$time_zone'/g" /etc/postgresql/12/main/postgresql.conf
