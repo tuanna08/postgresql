@@ -3,12 +3,11 @@
 ### Step 1: Run file script
 
 [Script here](https://github.com/tuanna08/postgresql/blob/master/setup.sh)
-
     ```
-    # git clone https://github.com/tuanna08/postgresql.git
-    # cd postgresql
-    # chmod +x ./setup.sh
-    # ./setup.sh
+        # git clone https://github.com/tuanna08/postgresql.git
+        # cd postgresql
+        # chmod +x ./setup.sh
+        # ./setup.sh
     ```
 
 ### Step 2: Config remote connect

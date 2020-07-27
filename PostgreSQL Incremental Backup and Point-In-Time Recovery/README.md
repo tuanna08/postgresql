@@ -11,10 +11,9 @@ chown -R postgres.postgres /wal_archive
 - We’ll create a simple directory and make sure it’s owned by ‘postgres’ user. Once this is done, we can start editing the PostgreSQL configuration.
 
     ```
-    archive_mode = on                       # enables archiving; off, on, or always
-                                    # (change requires restart)
-    archive_command = 'test ! -f /wal_archive/%f && cp %p /wal_archive/%f'                          # command to use to archive a logfile segment
-
+    archive_mode = on  # enables archiving; off, on, or always # (change requires restart)
+    archive_command = 'test ! -f /wal_archive/%f && cp %p /wal_archive/%f' 
+    #command to use to archive a logfile segment
     wal_level = replica     # minimal, replica, or logical
     ```
 
@@ -26,10 +25,15 @@ service postgresql restart
 ```
 
 ### Base Backup
-```
-pg_basebackup -Umyuser -h127.0.0.1 --progress -D /basebackup/
+- base backup
 
-```
+    ```
+    psql -c "CREATE USER replication REPLICATION LOGIN CONNECTION LIMIT 10 ENCRYPTED
+    PASSWORD 'YOUR_PASSWORD';"
+
+    pg_basebackup -Umyuser -h127.0.0.1 --progress -D /basebackup/
+    ```
+
 
 ### Restore
 
@@ -54,8 +58,15 @@ rm -rf /var/lib/postgresql/12/main/pg_wal/*
 ```
 
 - Now, it’s time to prepare the recovery.conf file, which will define how the recovery process will look like.
+
+- postgrsql 12
 ```
 touch /var/lib/postgresql/12/main/recovery.signal
+```
+
+- postgresl 11
+```
+touch /var/lib/postgresql/12/main/recovery.conf
 ```
 
 - edit config
@@ -63,6 +74,16 @@ touch /var/lib/postgresql/12/main/recovery.signal
 restore_command = 'cp /wal_archive/%f "%p"'
 #recovery_target_lsn = '3/72658818'
 recovery_target_timeline = 'latest'
+```
+
+- Postgrsql 11
+```
+restore_command = 'cp /wal_archive/%f "%p"'
+#recovery_target_lsn = '3/72658818'
+recovery_target_time = '2020-07-24 11:19:00+07'
+recovery_target_inclusive = true
+recovery_target_action = promote
+#hot_standby = on
 ```
 
 - In the example above, we defined a restore command (simple cp from our /wal_archive directory into PostgreSQL pg_wal directory). We also should decide where to stop - we decided to use a particular LSN as a stop point, but you can also use:
