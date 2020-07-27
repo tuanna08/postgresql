@@ -64,20 +64,16 @@ rm -rf /var/lib/postgresql/12/main/pg_wal/*
 touch /var/lib/postgresql/12/main/recovery.signal
 ```
 
-- postgresl 11
-```
-touch /var/lib/postgresql/12/main/recovery.conf
-```
-
-- edit config
+- edit config : /etc/postgresql/12/main/postgresql.conf 
 ```
 restore_command = 'cp /wal_archive/%f "%p"'
 #recovery_target_lsn = '3/72658818'
 recovery_target_timeline = 'latest'
 ```
 
-- Postgrsql 11
+- Postgrsql 11 create and add follow
 ```
+# vim /var/lib/postgresql/11/main/recovery.conf
 restore_command = 'cp /wal_archive/%f "%p"'
 #recovery_target_lsn = '3/72658818'
 recovery_target_time = '2020-07-24 11:19:00+07'
