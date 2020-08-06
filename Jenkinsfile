@@ -6,7 +6,7 @@ pipeline {
                sh 'sudo ansible dbslave -m service -a "name=postgresql state=stopped"'
                sh 'sudo ansible dbslave -a "whoami"'
                sh 'sudo ansible dbslave -a "rm -rf /var/lib/postgresql/11/main/*"'
-               sh 'sudo ansible dbslave -a "cp -r /basebackup/* /var/lib/postgresql/11/main/"' 
+               sh 'sudo ansible dbslave -a "cp -r /basebackup/ /var/lib/postgresql/11/main/"' 
                sh 'sudo ansible dbslave -a "rm -rf /var/lib/postgresql/11/main/pg_wal/*"'
            }    
        }
